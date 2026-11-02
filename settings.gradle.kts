@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "flip-fella-compass"
+rootProject.name = "flip-fella-avatar"
 include(":app")

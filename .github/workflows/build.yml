@@ -1,4 +1,4 @@
-name: Build compass app
+name: Build avatar app
 
 on:
   push:
@@ -27,18 +27,18 @@ jobs:
         run: gradle --no-daemon assembleDebug
 
       - name: Name the APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk flip-fella-compass.apk
+        run: cp app/build/outputs/apk/debug/app-debug.apk flip-fella-avatar.apk
 
       - uses: actions/upload-artifact@v4
         with:
-          name: flip-fella-compass
-          path: flip-fella-compass.apk
+          name: flip-fella-avatar
+          path: flip-fella-avatar.apk
 
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
-          name: Flip Fella Compass build ${{ github.run_number }}
-          body: Install flip-fella-compass.apk on the watch with Bugjaeger over wireless debugging. See the README for steps.
-          files: flip-fella-compass.apk
+          name: Flip Fella Avatar build ${{ github.run_number }}
+          body: Install flip-fella-avatar.apk on the watch with Bugjaeger over wireless debugging. See the README for steps.
+          files: flip-fella-avatar.apk
           make_latest: true

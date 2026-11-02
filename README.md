@@ -1,28 +1,29 @@
-# Flip Fella Compass
+# Flip Fella Avatar
 
-A live compass for the Samsung Galaxy Watch Ultra in the Flip Fella style: a bezel that turns as you do, your heading on flip cards, and Pebble keeping an eye on where you're headed.
+Pebble, Bean or Drip living on your Samsung Galaxy Watch Ultra. Put him in a slot on any watch face, then tap him to open him full screen, a bit like a tamagotchi.
 
-## What it does
+## On your watch face
 
-- **Live bezel.** The ring turns in real time while the orange pointer at 12 stays put.
-- **Heading on flip cards.** The digits flip as you turn, with the direction (N, NE and so on) underneath.
-- **Bearings.** Tap to lock the way you're facing. A blue marker sits on the bezel and a pill tells you which way to turn ("12° right"). The watch gives a short buzz when you're back on course. Tap again to clear.
-- **Pebble follows the way.** His eyes always look towards your bearing, or towards north when no bearing is set. He grins when you're on course.
-- **Calibration.** If the compass reading turns unreliable, Pebble goes dizzy and asks for a figure of eight. Tap to skip.
+Long press your face, tap **Customise**, pick a slot and choose **Flip Fella**.
 
-The compass reads magnetic north. It only uses the sensors while it's on screen and lets the screen time out after three minutes without a tap.
+- Where the slot takes a full image, he shows in colour.
+- Where it only takes an icon, he shows as an outline in the face's colour, with a word beside him.
+- He changes expression with your day: content, happy after you've given him a tap, cheering at 10,000 steps, worried when the battery drops below 20%, asleep from 10pm to 7am.
+- Watch faces only let apps like this refresh every few minutes, so he isn't animated in the slot. Tap him for that.
+
+## Full screen
+
+- He breathes, blinks and looks around.
+- **Tap** him for a bounce and a buzz. Taps fill his heart meter, which drains over about 12 hours.
+- **Long press** to swap between Pebble, Bean and Drip. The face complication follows your choice.
+- Three meters along the bottom: attention (heart), steps towards 10,000 (feet), watch battery (bolt).
+- At night he sleeps on a darker screen with the meters hidden.
+
+The first time you open him, allow **Physical activity** so he can count your steps. Steps count from the first time he checks each day, which is usually within five minutes of midnight.
 
 ## Get the APK
 
-Every push to `main` builds the app on GitHub Actions and publishes a release. Open the [latest release](../../releases/latest) on your phone and download `flip-fella-compass.apk`.
-
-## Install it
-
-Same as the watch face: connect Bugjaeger over wireless debugging (watch Bluetooth off, pair, then connect) and install `flip-fella-compass.apk`.
-
-## Open it from Flip Fella
-
-Long press the Flip Fella face, tap **Customise**, choose **Top shortcut** and pick **Flip Fella Compass** from the app shortcuts.
+Every push to `main` builds the app on GitHub Actions and publishes a release. Open the [latest release](../../releases/latest) on your phone and download `flip-fella-avatar.apk`, then install it with Bugjaeger the same way as the watch face.
 
 ## Fonts
 
