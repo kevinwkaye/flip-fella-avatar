@@ -6,8 +6,8 @@ Pebble, Bean or Drip living on your Samsung Galaxy Watch Ultra. Put him in a slo
 
 Long press your face, tap **Customise**, pick a slot and choose **Flip Fella**.
 
-- Where the slot takes a full image, he shows in colour.
-- Where it only takes an icon, he shows as an outline in the face's colour, with a word beside him.
+- He always shows in full colour. Slots that can only show a single-colour icon won't offer him, so if he's missing from a slot's list, try another slot.
+- In wide slots he sits beside his mood, and in big photo slots he fills the space.
 - He changes expression with your day: content, happy after you've given him a tap, cheering at 10,000 steps, worried when the battery drops below 20%, asleep from 10pm to 7am.
 - Watch faces only let apps like this refresh every few minutes, so he isn't animated in the slot. Tap him for that.
 

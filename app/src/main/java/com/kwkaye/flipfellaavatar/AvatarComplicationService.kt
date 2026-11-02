@@ -14,10 +14,9 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.wear.watchface.complications.data.ComplicationData
 import androidx.wear.watchface.complications.data.ComplicationType
-import androidx.wear.watchface.complications.data.MonochromaticImage
-import androidx.wear.watchface.complications.data.MonochromaticImageComplicationData
+import androidx.wear.watchface.complications.data.LongTextComplicationData
+import androidx.wear.watchface.complications.data.PhotoImageComplicationData
 import androidx.wear.watchface.complications.data.PlainComplicationText
-import androidx.wear.watchface.complications.data.ShortTextComplicationData
 import androidx.wear.watchface.complications.data.SmallImage
 import androidx.wear.watchface.complications.data.SmallImageComplicationData
 import androidx.wear.watchface.complications.data.SmallImageType
@@ -28,8 +27,8 @@ import kotlinx.coroutines.withTimeoutOrNull
 import kotlin.coroutines.resume
 
 /**
- * Puts the avatar in a slot on any watch face. Full colour where the slot takes an image,
- * a white outline (tinted by the face) plus one word where it only takes an icon.
+ * Puts the avatar in a slot on any watch face, always in full colour. It only offers
+ * colour image types, so faces can't fall back to a tinted outline.
  * Tapping him opens the full-screen app.
  */
 class AvatarComplicationService : SuspendingComplicationDataSourceService() {
@@ -55,26 +54,29 @@ class AvatarComplicationService : SuspendingComplicationDataSourceService() {
                 description
             ).setTapAction(tap).build()
 
-            ComplicationType.MONOCHROMATIC_IMAGE -> MonochromaticImageComplicationData.Builder(
-                MonochromaticImage.Builder(Icon.createWithBitmap(render(character, mood, outline = true, px = 96))).build(),
+            // Wide slots: colour avatar beside his mood.
+            ComplicationType.LONG_TEXT -> LongTextComplicationData.Builder(
+                PlainComplicationText.Builder(Avatar.label(mood, this)).build(),
                 description
+            ).setSmallImage(
+                SmallImage.Builder(Icon.createWithBitmap(render(character, mood, outline = false, px = 160)), SmallImageType.ICON).build()
             ).setTapAction(tap).build()
 
-            ComplicationType.SHORT_TEXT -> ShortTextComplicationData.Builder(
-                PlainComplicationText.Builder(Avatar.word(mood, this)).build(),
+            // Big photo slots: the avatar on a dark background.
+            ComplicationType.PHOTO_IMAGE -> PhotoImageComplicationData.Builder(
+                Icon.createWithBitmap(render(character, mood, outline = false, px = 320, background = true)),
                 description
-            ).setMonochromaticImage(
-                MonochromaticImage.Builder(Icon.createWithBitmap(render(character, mood, outline = true, px = 96))).build()
             ).setTapAction(tap).build()
 
             else -> null
         }
     }
 
-    private fun render(character: Character, mood: Mood, outline: Boolean, px: Int): Bitmap {
+    private fun render(character: Character, mood: Mood, outline: Boolean, px: Int, background: Boolean = false): Bitmap {
         val bmp = Bitmap.createBitmap(px, px, Bitmap.Config.ARGB_8888)
         val c = Canvas(bmp)
-        val scale = px * 0.88f / character.height
+        if (background) c.drawColor(0xFF070708.toInt())
+        val scale = px * (if (background) 0.7f else 0.88f) / character.height
         c.translate(px / 2f, px / 2f)
         c.scale(scale, scale)
         c.translate(-character.centreX, -character.centreY)
